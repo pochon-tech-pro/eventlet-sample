@@ -29,7 +29,7 @@ def handle_message(data):
 
 def background_thread(data):
     logging.debug(f"Received message: {data}")
-    time.sleep(5)  # 模擬処理時間
+    time.sleep(1)  # 模擬処理時間
     logging.debug(f"Finished processing message: {data}")
 
 
@@ -37,4 +37,4 @@ if __name__ == '__main__':
     # eventletのWSGIサーバーを起動
     # これにより、Flaskアプリケーションが非同期I/Oを使用して動作するようになる
     # app.run()だと多数のクライアントからのリクエストを同時に処理する必要があるときにネック
-    eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 8081)), app)
+    eventlet.wsgi.server(eventlet.listen(('127.0.0.1', 9000)), app)
