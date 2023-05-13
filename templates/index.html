@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Room</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+<textarea id="message" placeholder="Type your message here..."></textarea>
+<button id="send">Send</button>
+<div id="messages"></div>
+
+<script type="text/javascript" charset="utf-8">
+    var socket = io.connect('http://127.0.0.1:8081');
+    socket.on('broadcast_message', function (msg) {
+        $('#messages').append($('<li>').text(msg));
+    });
+
+    $('#send').click(function () {
+        socket.emit('send_message', $('#message').val());
+        $('#message').val('');
+    });
+</script>
+</body>
+</html>
